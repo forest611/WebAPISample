@@ -28,7 +28,7 @@ namespace WebAPIServer.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "server=localhost;port=3306;user=forest;password=rDcrmPRLJvu@ex/E,>K;database=man10_bank";
+            var connectionString = "server=localhost;port=3306;user=forest;password=aaabbbsss;database=man10_bank";
 
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 30));
 
