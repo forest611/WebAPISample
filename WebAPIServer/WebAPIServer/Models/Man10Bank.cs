@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebAPIServer.Models
 {
 	/// <summary>
-	/// Man10Bankのテーブル構造
+	/// UserBankテーブル
 	/// </summary>
 	public class UserBank
 	{
@@ -17,33 +16,25 @@ namespace WebAPIServer.Models
 
     }
 
-	/// <summary>
-	/// 接続設定など
-	/// DbContextはスレッドセーフでない
-	/// </summary>
-	public class UserBankContext : DbContext
+    /// <summary>
+    /// 接続設定など
+    /// https://learn.microsoft.com/ja-jp/ef/core/dbcontext-configuration/
+    /// </summary>
+    public class UserBankContext : MySQLContext
 	{
-
-		public DbSet<UserBank> user_Bank { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public UserBankContext() : base("man10_bank")
         {
-            var connectionString = "server=localhost;port=3306;user=forest;password=aaabbbsss;database=man10_bank";
-
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 30));
-
-			optionsBuilder.UseMySql(connectionString,serverVersion);
         }
 
+        public DbSet<UserBank> user_Bank { get; set; }
     }
 
 	/// <summary>
 	/// データ
 	/// </summary>
-	public class BankData
+	public class Bank
 	{
-
-		public static double GetBank(string mcid)
+		public static double GetBalance(string mcid)
 		{
 
 			var db = new UserBankContext();
