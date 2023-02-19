@@ -1,0 +1,9 @@
+name: WebAPIClient
+version: '1.0'
+main: red.man10.webapisample.WebAPISample
+api-version: 1.19
+commands:
+  get:
+    description: get
+  post:
+    description: post
