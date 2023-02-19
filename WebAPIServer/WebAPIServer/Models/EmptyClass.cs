@@ -12,8 +12,6 @@ namespace WebAPIServer.Models
         public string uuid { get; set; }
         public double balance { get; set; }
 
-
-
     }
 
 	public class UserBankContext : DbContext
