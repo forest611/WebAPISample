@@ -34,22 +34,14 @@ namespace WebAPIServer.Models
 	/// </summary>
 	public class Bank
 	{
+		//TODO:mcid->uuidに変える
 		public static double GetBalance(string mcid)
 		{
-
 			var db = new UserBankContext();
-
-			var balance = db.user_Bank.Where(t => t.player == mcid).FirstOrDefault()?.balance ?? 0.0;
-
-			db.user_Bank.ForEachAsync(result =>
-			{
-                Console.WriteLine($"FOREACH:{result.player}{result.balance}");
-            });
-
-            Console.WriteLine($"mcid:{mcid} balance:{balance}");
-
+			var balance = db.user_Bank.FirstOrDefault(t => t.player == mcid)?.balance ?? 0.0;
 			return balance;
 		}
+
 
 	}
 
