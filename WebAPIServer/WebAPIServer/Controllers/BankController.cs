@@ -9,12 +9,19 @@ using WebAPIServer.Models;
 
 namespace WebAPIServer.Controllers
 {
+
+    public class UserAndAMount
+    {
+        public string MCID { get; set; }
+        public double Amount { get; set; }
+    }
+    
     [Route("api/[controller]")]
     public class BankController : Controller
     {
 
         [HttpGet("{mcid}")]
-        public double Get(string mcid)
+        public double GetBalance(string mcid)
         {
             var balance = Bank.GetBalance(mcid);
 
@@ -22,6 +29,15 @@ namespace WebAPIServer.Controllers
 
             return balance;
         }
+
+        [HttpPost]
+        public double SetBalance(UserAndAMount data)
+        {
+            var result = Bank.SetBalance(data.MCID, data.Amount);
+            return result;
+        }
+        
+        
     }
 }
 

@@ -42,6 +42,23 @@ namespace WebAPIServer.Models
 			return balance;
 		}
 
+		public static double SetBalance(string mcid, double amount)
+		{
+			var db = new UserBankContext();
+			var data = db.user_Bank.FirstOrDefault(t => t.player == mcid);
+
+			if (data == null)
+			{
+				return 0.0;
+			}
+
+			data.balance = amount;
+
+			db.SaveChanges();
+			return amount;
+			
+		}
+
 
 	}
 
