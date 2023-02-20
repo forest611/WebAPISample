@@ -19,6 +19,9 @@ class WebAPISample : JavaPlugin() {
 
     override fun onEnable() {
         // Plugin startup logic
+
+        getCommand("get")!!.setExecutor(this)
+        getCommand("post")!!.setExecutor(this)
     }
 
     override fun onDisable() {
@@ -26,6 +29,9 @@ class WebAPISample : JavaPlugin() {
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>?): Boolean {
+
+        sender.sendMessage("1:${label}")
+
 
         if (label=="get"){
 
@@ -46,13 +52,12 @@ class WebAPISample : JavaPlugin() {
 
     val url = ""
     val mediaType = "application/json; charset=utf-8".toMediaType()
-    val testJson = ""
 
 
     fun get(sender: CommandSender){
 
         val request = Request.Builder()
-            .url(url)
+            .url("https://localhost:7213/api/Bank/forest611")
             .build()
 
         var responseMsg = "NoMessage"
@@ -69,10 +74,8 @@ class WebAPISample : JavaPlugin() {
 
     fun post(sender: CommandSender){
 
-        val body = testJson.toRequestBody(mediaType)
         val request = Request.Builder()
-            .url(url)
-            .post(body)
+            .url("https://localhost:7213/api/Bank?MCID=forest611&Amount=100000")
             .build()
 
         var responseMsg = "NoMessage"
